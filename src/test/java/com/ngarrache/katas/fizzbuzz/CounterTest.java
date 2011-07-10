@@ -32,6 +32,19 @@ public class CounterTest {
 		assertThat(counter.answer(21)).isEqualTo("Fizz");
 		assertThat(counter.answer(24)).isEqualTo("Fizz");
 	}
+	
+	@Test
+	public void answer_InputHas3InIt_ReturnFizz() {
+		assertThat(counter.answer(34)).isEqualTo("Fizz");
+		assertThat(counter.answer(37)).isEqualTo("Fizz");
+		assertThat(counter.answer(34)).isEqualTo("Fizz");
+		assertThat(counter.answer(31)).isEqualTo("Fizz");
+	}
+
+	@Test
+	public void answer_InputHas3InItAndIsMultipleOf5_ReturnFizzBuzz() {
+		assertThat(counter.answer(35)).isEqualTo("FizzBuzz");
+	}
 
 	@Test
 	public void answer_InputIsOnlyMultipleOf5_ReturnBuzz() {
@@ -39,10 +52,24 @@ public class CounterTest {
 		assertThat(counter.answer(10)).isEqualTo("Buzz");
 		assertThat(counter.answer(20)).isEqualTo("Buzz");
 		assertThat(counter.answer(25)).isEqualTo("Buzz");
-		assertThat(counter.answer(35)).isEqualTo("Buzz");
 		assertThat(counter.answer(40)).isEqualTo("Buzz");
 		assertThat(counter.answer(50)).isEqualTo("Buzz");
 	}
+	
+	@Test
+	public void answer_InputHas5InIt_ReturnBuzz() {
+		assertThat(counter.answer(52)).isEqualTo("Buzz");
+		assertThat(counter.answer(56)).isEqualTo("Buzz");
+		assertThat(counter.answer(58)).isEqualTo("Buzz");
+	}
+
+	@Test
+	public void answer_InputHas5InItAndIsMultipleOf3_ReturnFizzBuzz() {
+		assertThat(counter.answer(51)).isEqualTo("FizzBuzz");
+		assertThat(counter.answer(54)).isEqualTo("FizzBuzz");
+		assertThat(counter.answer(57)).isEqualTo("FizzBuzz");
+	}
+
 
 	@Test
 	public void answer_InputNotMultipleOf3Or5_ReturnIdentity() {

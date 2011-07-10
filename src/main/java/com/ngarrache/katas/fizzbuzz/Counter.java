@@ -1,38 +1,57 @@
 package com.ngarrache.katas.fizzbuzz;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 /**
  * @author Nizar Garrache
  * 
  * @since 10 juil. 2011
  */
 public class Counter {
-	private static final Logger LOGGER = LoggerFactory.getLogger(Counter.class);
+	private final static String FIZZ = "Fizz";
+	private final static String BUZZ = "Buzz";
+	private final static String FIZZ_BUZZ = "FizzBuzz";
 
 	public String answer(int number) {
 		if (number <= 0) {
 			throw new IllegalArgumentException("number [" + number
 					+ "] must be greater then 0");
 		}
-		if (number % 3 == 0 && number % 5 == 0) {
-			return "FizzBuzz";
+		if (multipleOfThreeAndFive(number) || containsThreeAndFive(number)
+				|| (multipleOfThree(number) && containsFive(number))
+				|| (multipleOfFive(number) && containsThree(number))) {
+			return FIZZ_BUZZ;
 		}
-		if (number % 3 == 0) {
-			return "Fizz";
+		if (multipleOfThree(number) || containsThree(number)) {
+			return FIZZ;
 		}
-		if (number % 5 == 0) {
-			return "Buzz";
+		if (multipleOfFive(number) || containsFive(number)) {
+			return BUZZ;
 		}
 		return String.valueOf(number);
 	}
 
-	public static void main(String[] args) {
-		Counter counter = new Counter();
-		for (int turn = 1; turn <= 100; turn++) {
-			LOGGER.info(counter.answer(turn));
-		}
+	private boolean containsThree(int number) {
+		return String.valueOf(number).contains("3");
+	}
+
+	private boolean containsFive(int number) {
+		return String.valueOf(number).contains("5");
+	}
+
+	private boolean containsThreeAndFive(int number) {
+		return String.valueOf(number).contains("3")
+				&& String.valueOf(number).contains("5");
+	}
+
+	private boolean multipleOfThree(int number) {
+		return number % 3 == 0;
+	}
+
+	private boolean multipleOfFive(int number) {
+		return number % 5 == 0;
+	}
+
+	private boolean multipleOfThreeAndFive(int number) {
+		return number % 3 == 0 && number % 5 == 0;
 	}
 
 }
